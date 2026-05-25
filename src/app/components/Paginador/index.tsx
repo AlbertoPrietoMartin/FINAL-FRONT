@@ -31,18 +31,22 @@ const Paginador = ({next,prev,page,setPage}: {
                 setPage(3);
             }}><p>{"Tercera"}</p></div>}           
 
+            <p>{page}</p>
+
+            {next && <div onClick={()=>{
+                setPage(40);
+            }}><p>{"Antepenultima"}</p></div>}  
+
+            {next && <div onClick={()=>{
+                setPage(41);
+            }}><p>{"Penultima"}</p></div>}        
 
             {next && <div onClick={()=>{
                 setPage(42);
             }}><p>{"Ultima"}</p></div>}       
 
-            {next && <div onClick={()=>{
-                setPage(41);
-            }}><p>{"Penultima"}</p></div>}  
 
-            {next && <div onClick={()=>{
-                setPage(40);
-            }}><p>{"Antepenultima"}</p></div>}         
+       
 
         </div>
     )

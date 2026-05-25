@@ -13,6 +13,7 @@ const PageCharacter =() =>{
     const [loading, setLoading]=useState(true);
     const [error, setError]=useState("");
     const [page,setPage] = useState(1);
+    const [inputValue, setInputValue] = useState("");
     const [search, setSearch] = useState("");
 
     const getCharacters = async(page?: number, name?: string)=>{
@@ -49,10 +50,12 @@ const PageCharacter =() =>{
         <div>
             <div className = "SearchContainer">
                 <input 
-                    value = {search}
-                    onChange = {(e=>setSearch(e.target.value))}
+                    value = {inputValue}
+                    onChange = {(e=>setInputValue(e.target.value))}
+                    onKeyDown={(e) => { if(e.key === "Enter") setSearch(inputValue); }}
                     placeholder="Buscar personajes..."
                 />
+                <button onClick={()=> setSearch(inputValue)}>Search</button>
             </div>       
 
             {!resultCharacter && search && <p>No se encontraron personajes</p>}
@@ -67,9 +70,6 @@ const PageCharacter =() =>{
                 }}/>
             </div>
         </div>
-
-
-
     )
 };
 
