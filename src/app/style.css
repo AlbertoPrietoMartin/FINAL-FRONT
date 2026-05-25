@@ -11,3 +11,54 @@
 .containerMainPage svg {
     transform: scale(10);
 }
+
+.CharactersContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.SearchContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.SearchContainer input{
+    width: 200px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(0,0,0,0.5);
+    color: #FABADA;
+    font-size: 16px;
+    outline: none;
+}
+
+.SearchContainer input::placeholder{
+    color: rgba(250, 186, 218, 0.5);
+}
+
+.FiltersContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(0,0,0,0.5);
+    color: #FABADA;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(0,0,0,0.8);
+}

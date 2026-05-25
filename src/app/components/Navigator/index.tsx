@@ -14,10 +14,7 @@ const Navigator = () =>{
             link:"/",
             name:"La Casa"
         },
-        {
-            link:"/characters",
-            name:"Personajitos"
-        },
+        
     ]
 
     return (
