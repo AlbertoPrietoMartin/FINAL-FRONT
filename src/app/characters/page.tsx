@@ -5,6 +5,8 @@ import { ResultsCharacter } from "../types/RicardoYMortirio";
 import api from "@/api/api";
 import CharacterChulo from "../components/CharacterChulo";
 import Paginador from "../components/Paginador";
+import FilterStatus from "../components/FilterStatus";
+import FilterGender from "../components/FilterGender";
 import "./style.css";
 
 const PageCharacter =() =>{
@@ -15,13 +17,15 @@ const PageCharacter =() =>{
     const [page,setPage] = useState(1);
     const [inputValue, setInputValue] = useState("");
     const [search, setSearch] = useState("");
+    const [estatus, setEstatus] = useState("");
+    const [genero, setGenero] = useState("");
 
-    const getCharacters = async(page?: number, name?: string)=>{
+    const getCharacters = async(page?: number, name?: string, estatus?: string, genero?: string)=>{
         
         setError("");
 
         try{
-            await api.get(`/character?page=${page}&name=${name ?? ""}`).then((e)=>{
+            await api.get(`/character?page=${page}&name=${name ?? ""}&status=${estatus ?? ""}&gender=${genero ?? ""}`).then((e)=>{
                 const {data}: {data:ResultsCharacter}=e;
                 setResultCharacter(data);
                 setLoading(false);
@@ -35,12 +39,12 @@ const PageCharacter =() =>{
     }
 
     useEffect(()=>{
-        getCharacters(page, search);
-    },[page, search]);
+        getCharacters(page, search, estatus, genero);
+    },[page, search, estatus, genero]);
 
     useEffect(()=>{
         setPage(1);
-    },[search]);
+    },[search, estatus, genero]);
 
     if(loading){
         return <p>Loading...</p>
@@ -56,7 +60,12 @@ const PageCharacter =() =>{
                     placeholder="Buscar personajes..."
                 />
                 <button onClick={()=> setSearch(inputValue)}>Search</button>
-            </div>       
+            </div>
+
+            <div className="FiltersContainer">
+                <FilterStatus estatus={estatus} setEstatus={setEstatus}/>
+                <FilterGender genero={genero} setGenero={setGenero}/>
+            </div>
 
             {!resultCharacter && search && <p>No se encontraron personajes</p>}
 
